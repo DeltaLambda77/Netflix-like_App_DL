@@ -1,9 +1,12 @@
 import React from 'react';
 
-const MovieCard = ({title, content}) => (
+const MovieCard = ({title, year, category, rating, thumbnail}) => (
     <div className="p-4 m-2 border rounded-md shadow-md">
         <h2 className="text-lg font-bold mb-2">{title}</h2>
-        <p>{content}</p>
+        <p>{year}</p>
+        <p>{category}</p>
+        <p>{rating}</p>
+        <p>{thumbnail}</p>
     </div>
 );
 

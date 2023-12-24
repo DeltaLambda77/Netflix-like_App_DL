@@ -13,7 +13,14 @@ const CardsList = () => {
     return (
         <div className="flex flex-wrap">
         {movieData.map((movie) => (
-            <MovieCard key={uuidv4()} title={movie.title} content={movie.content} />
+            <MovieCard 
+            key={uuidv4()}
+            title={movie.title}
+            year={movie.year}
+            category={movie.category}
+            rating={movie.rating}
+            thumbnail={movie.thumbnail.regular.small}
+            />
         ))}
         </div>
     );

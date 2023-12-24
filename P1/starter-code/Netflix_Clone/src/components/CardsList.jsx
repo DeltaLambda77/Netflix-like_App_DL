@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import movieDataFile from './../../data.json';
 import { v4 as uuidv4 } from 'uuid';
+import MovieCard from './MovieCard'; 
 
 const CardsList = () => {
     const [movieData, setMovieData] = useState([]);
@@ -17,12 +18,5 @@ const CardsList = () => {
         </div>
     );
 };
-
-const MovieCard = ({title, content}) => (
-    <div className="p-4 m-2 border rounded-md shadow-md">
-        <h2 className="text-lg font-bold mb-2">{title}</h2>
-        <p>{content}</p>
-    </div>
-);
 
 export default CardsList;

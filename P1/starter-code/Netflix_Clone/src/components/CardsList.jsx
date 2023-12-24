@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import movieDataFile from './../../data.json';
-
+import { v4 as uuidv4 } from 'uuid';
 
 const CardsList = () => {
     const [movieData, setMovieData] = useState([]);
@@ -12,7 +12,7 @@ const CardsList = () => {
     return (
         <div className="flex flex-wrap">
         {movieData.map((movie) => (
-            <MovieCard key={movie.id} title={movie.title} content={movie.content} />
+            <MovieCard key={uuidv4()} title={movie.title} content={movie.content} />
         ))}
         </div>
     );

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import Sidebar from './../components/Sidebar';
-import searchIcon from './../assets/icon-search.svg';
 import CardsList from './../components/CardsList';
 
 const Home = () => {
@@ -9,7 +8,7 @@ const Home = () => {
             <Sidebar />
             <div className="flex-1 bg-[#10141f]">
                 <div className="flex items-center">
-                    <img className="align-bottom h-8" src={searchIcon} alt="search-icon" />                
+                    <img className="align-bottom h-8" src={'./assets/icon-search.svg'} alt="search-icon" />                
                     <input
                         type="text"
                         placeholder="Search for movies or TV series"

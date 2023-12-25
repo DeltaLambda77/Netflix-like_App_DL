@@ -8,7 +8,7 @@
       },
       "regular": {
         "small": "./assets/thumbnails/beyond-earth/regular/small.jpg",
-        "medium": "./assets/thumbnails/beyond-earth/regular/medium.jpg",
+        "medium": "./.././assets/thumbnails/beyond-earth/regular/medium",
         "large": "./assets/thumbnails/beyond-earth/regular/large.jpg"
       }
     },

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const HoverableImage = ({ initialIcon, hoveredIcon }) => {
     const [imageSrc, setImageSrc] = useState(initialIcon);

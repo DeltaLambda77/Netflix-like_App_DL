@@ -16,9 +16,6 @@ const Home = () => {
                         w-64"
                     />
                 </div>
-            </div>
-            <div className="p-4">
-                <h1 className="text-2xl font-bold mb-4">Card Component Example</h1>
                 <CardsList />
             </div>
         </div>

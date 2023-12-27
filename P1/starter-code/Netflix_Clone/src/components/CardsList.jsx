@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import movieDataFile from './../../data.json';
 import { v4 as uuidv4 } from 'uuid';
-import MovieCard from './MovieCard'; 
+import TrendingMovieCard from './TrendingMovieCard';
+import RecommendedMovieCard from './RecommendedMovieCard'; 
+
 
 const CardsList = () => {
     const [trendingMovies, setTrendingMovies] = useState([]);
@@ -21,7 +23,7 @@ const CardsList = () => {
             <h2 className="text-2xl font-bold text-white">Trending Movies</h2>
             <div className="flex flex-wrap">
                 {trendingMovies.map((movie) => (
-                    <MovieCard 
+                    <TrendingMovieCard
                     key={uuidv4()}
                     title={movie.title}
                     year={movie.year}
@@ -35,7 +37,7 @@ const CardsList = () => {
             <h2 className="text-2xl font-bold text-white">Recommended For You</h2>
             <div className="flex flex-wrap">
                 {recommendedMovies.map((movie) => (
-                    <MovieCard 
+                    <RecommendedMovieCard 
                     key={uuidv4()}
                     title={movie.title}
                     year={movie.year}

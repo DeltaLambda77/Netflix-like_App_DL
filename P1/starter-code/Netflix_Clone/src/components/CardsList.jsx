@@ -20,8 +20,8 @@ const CardsList = () => {
 
     return (
         <div>
-            <h2 className="text-2xl font-bold text-white">Trending Movies</h2>
-            <div className="flex flex-wrap">
+            <h2 className="text-2xl font-bold text-white">Trending</h2>
+            <div className="flex flex-wrap pt-8">
                 {trendingMovies.map((movie) => (
                     <TrendingMovieCard
                     key={uuidv4()}
@@ -35,7 +35,7 @@ const CardsList = () => {
             </div>
 
             <h2 className="text-2xl font-bold text-white">Recommended For You</h2>
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap pt-8">
                 {recommendedMovies.map((movie) => (
                     <RecommendedMovieCard 
                     key={uuidv4()}

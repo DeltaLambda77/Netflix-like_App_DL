@@ -39,6 +39,7 @@ const Home = () => {
                         />
                     </div>
                     <CardsList
+                        searchQuery={searchQuery}
                         trendingMovies={trendingMovies}
                         recommendedMovies={recommendedMovies}
                         queriedMovies={queriedMovies}

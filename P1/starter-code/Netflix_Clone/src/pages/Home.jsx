@@ -4,10 +4,10 @@ import CardsList from './../components/CardsList';
 
 const Home = () => {
     return (
-        <div className="flex">
+        <div className="flex bg-[#10141f]">
             <Sidebar />
-            <div className="flex-1 bg-[#10141f]">
-                <div className="">
+            <div className="flex-1 ml-32">
+                <div>
                     <div className="flex pt-8 pb-4 items-center">
                         <img className="align-bottom h-8" src={'./assets/icon-search.svg'} alt="search-icon" />                
                         <input

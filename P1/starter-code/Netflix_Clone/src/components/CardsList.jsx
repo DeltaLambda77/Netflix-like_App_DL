@@ -5,18 +5,7 @@ import TrendingMovieCard from './TrendingMovieCard';
 import RecommendedMovieCard from './RecommendedMovieCard'; 
 
 
-const CardsList = () => {
-    const [trendingMovies, setTrendingMovies] = useState([]);
-    const [recommendedMovies, setRecommendedMovies] = useState([]);
-
-
-    useEffect(() => {
-        const trendingMovieList = movieDataFile.filter((movie) => movie.isTrending);
-        const recommendedMovieList = movieDataFile.filter((movie) => !movie.isTrending);
-
-        setTrendingMovies(trendingMovieList);
-        setRecommendedMovies(recommendedMovieList);
-    }, []);
+const CardsList = ({trendingMovies, recommendedMovies}) => {
 
     return (
         <div>

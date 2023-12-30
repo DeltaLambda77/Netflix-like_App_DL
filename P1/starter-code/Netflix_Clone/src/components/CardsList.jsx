@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import TrendingMovieCard from './TrendingMovieCard';
 import RecommendedMovieCard from './RecommendedMovieCard'; 
@@ -39,7 +39,7 @@ const CardsList = ({trendingMovies, recommendedMovies, queriedMovies, searchQuer
                     </div>
                 </div>
             ) : queriedMovies.length > 0 ? (
-                <div>
+                <div className="min-h-screen min-w-screen bg-[#10141f]">
                     <h2 className="text-2xl font-bold text-white">Matched movies were found</h2>
                     <div className="flex flex-wrap pt-8">
                         {queriedMovies.map((movie) => (
@@ -55,7 +55,7 @@ const CardsList = ({trendingMovies, recommendedMovies, queriedMovies, searchQuer
                     </div>
                 </div>
             ) : (
-                <div>
+                <div className="min-h-screen min-w-screen bg-[#10141f]">
                     <h2 className="text-2xl font-bold text-white">No matches were found</h2>
                 </div>
             )}

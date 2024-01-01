@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
-import Home from './pages/Home.jsx'
+import Home from './pages/Home.jsx';
+import Bookmarked from './pages/Bookmarked.jsx'
 import ErrorPage from './ErrorPage.jsx';
 import {
   createBrowserRouter,
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "/Home",
         element: <Home />,
+      },
+      {
+        path: "/Bookmarked_Movies",
+        element: <Bookmarked />,
       },
     ],
   },

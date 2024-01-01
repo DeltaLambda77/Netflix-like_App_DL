@@ -17,7 +17,7 @@ const Sidebar = () => {
                 <Link>
                     <HoverableImage initialIcon={'./assets/icon-nav-tv-series.svg'} hoveredIcon={'./assets/icon-category-tv.svg'}/>
                 </Link>
-                <Link>
+                <Link to="/Bookmarked_Movies">
                     <HoverableImage initialIcon={'./assets/icon-nav-bookmark.svg'} hoveredIcon={'./assets/icon-bookmark-full.svg'}/>
                 </Link>
                 

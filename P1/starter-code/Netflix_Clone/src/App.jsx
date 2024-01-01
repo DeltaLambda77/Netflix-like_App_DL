@@ -8,8 +8,8 @@ function App() {
   return (
     <>
       <div>
-        <Sidebar />
-        <Outlet />
+       <Sidebar />
+       <Outlet />
       </div>
     </>
   )

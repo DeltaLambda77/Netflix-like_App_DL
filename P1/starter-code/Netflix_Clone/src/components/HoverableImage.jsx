@@ -12,13 +12,13 @@ const HoverableImage = ({ initialIcon, hoveredIcon }) => {
     };
 
     return (
-        <img 
-            className="my-4 h-5 object-cover"
-            src={imageSrc}
-            onMouseOver={handleMouseOver}
-            onMouseOut={handleMouseOut}
-            alt="img-icon"
-        />
+            <img 
+                className="my-4 h-5 object-cover"
+                src={imageSrc}
+                onMouseOver={handleMouseOver}
+                onMouseOut={handleMouseOut}
+                alt="img-icon"
+            />
     );
 }
 

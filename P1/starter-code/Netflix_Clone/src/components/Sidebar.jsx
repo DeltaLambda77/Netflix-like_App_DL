@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import HoverableImage from './HoverableImage';
+
 
 const Sidebar = () => {
 
@@ -8,9 +10,17 @@ const Sidebar = () => {
             <div className="flex flex-col justify-center items-center">
                 <img className="mb-12 mt-4" src={'./assets/logo.svg'} />
                 <img className="my-4" src={'./assets/icon-nav-home.svg'} />
-                <HoverableImage initialIcon={'./assets/icon-nav-movies.svg'} hoveredIcon={'./assets/icon-category-movie.svg'}/>
-                <HoverableImage initialIcon={'./assets/icon-nav-tv-series.svg'} hoveredIcon={'./assets/icon-category-tv.svg'}/>
-                <HoverableImage initialIcon={'./assets/icon-nav-bookmark.svg'} hoveredIcon={'./assets/icon-bookmark-full.svg'}/>
+
+                <Link to="/Home">
+                    <HoverableImage initialIcon={'./assets/icon-nav-movies.svg'} hoveredIcon={'./assets/icon-category-movie.svg'}/>
+                </Link>
+                <Link>
+                    <HoverableImage initialIcon={'./assets/icon-nav-tv-series.svg'} hoveredIcon={'./assets/icon-category-tv.svg'}/>
+                </Link>
+                <Link>
+                    <HoverableImage initialIcon={'./assets/icon-nav-bookmark.svg'} hoveredIcon={'./assets/icon-bookmark-full.svg'}/>
+                </Link>
+                
             </div>
                 
             <div>

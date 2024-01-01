@@ -9,9 +9,10 @@ const Sidebar = () => {
         <div className="fixed rounded-md flex flex-col justify-between h-2/3 bg-[#181c2c] my-6 mx-6 bg-#161d2f items-center p-6">
             <div className="flex flex-col justify-center items-center">
                 <img className="mb-12 mt-4" src={'./assets/logo.svg'} />
-                <img className="my-4" src={'./assets/icon-nav-home.svg'} />
-
                 <Link to="/Home">
+                    <img className="my-4" src={'./assets/icon-nav-home.svg'} />
+                </Link>
+                <Link to="/Movies">
                     <HoverableImage initialIcon={'./assets/icon-nav-movies.svg'} hoveredIcon={'./assets/icon-category-movie.svg'}/>
                 </Link>
                 <Link>

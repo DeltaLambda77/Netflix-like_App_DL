@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import Home from './pages/Home.jsx';
+import Movies from './pages/Movies.jsx'
 import Bookmarked from './pages/Bookmarked.jsx'
 import ErrorPage from './ErrorPage.jsx';
 import {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/Bookmarked_Movies",
         element: <Bookmarked />,
+      },
+      {
+        path: "/Movies",
+        element: <Movies />,
       },
     ],
   },

@@ -2,17 +2,18 @@ import React, { useState, useEffect } from "react";
 import Sidebar from './../components/Sidebar';
 import CardsList from './../components/CardsList';
 import movieDataFile from './../../data.json';
+import { useOutletContext } from "react-router-dom";
 
 const Movies = () => {
     const [searchQuery, setSearchQuery] = useState('');
-    const [movies, setMovies] = useState([]);
     const [queriedMovies, setQueriedMovies] = useState([]);
-
-    useEffect(() => {
-        const movieList = movieDataFile.filter((movie) => movie.category === 'Movie');
-
-        setMovies(movieList);
-    }, []);
+    const [movieData, setMovieData] = useOutletContext();
+    const [page, setPage] = useState({
+        home: false,
+        bookmarked: false,
+        movies: true,
+        tvSeries: false,
+    });
 
     useEffect(() => {
         const queriedMovieList = movieDataFile.filter((movie) => movie.title.toLowerCase().includes(searchQuery));
@@ -37,8 +38,9 @@ const Movies = () => {
                     </div>
                     <CardsList
                         searchQuery={searchQuery}
-                        recommendedMovies={movies}
                         queriedMovies={queriedMovies}
+                        movieData={movieData}
+                        page={page}
                     />
                 </div>
 

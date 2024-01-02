@@ -2,16 +2,27 @@ import React, { useState, useEffect } from "react";
 import Sidebar from './../components/Sidebar';
 import CardsList from './../components/CardsList';
 import movieDataFile from './../../data.json';
+import { useOutletContext } from "react-router-dom";
 
 const Home = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [trendingMovies, setTrendingMovies] = useState([]);
     const [recommendedMovies, setRecommendedMovies] = useState([]);
     const [queriedMovies, setQueriedMovies] = useState([]);
+    const [movieData, setMovieData] = useOutletContext();
+    const [page, setPage] = useState({
+        home: true,
+        bookmarked: false,
+        movies: false,
+        tvSeries: false,
+    });
 
     useEffect(() => {
         const trendingMovieList = movieDataFile.filter((movie) => movie.isTrending);
         const recommendedMovieList = movieDataFile.filter((movie) => !movie.isTrending);
+
+        console.log(movieData);
+        console.log(page);
 
         setTrendingMovies(trendingMovieList);
         setRecommendedMovies(recommendedMovieList);
@@ -43,6 +54,8 @@ const Home = () => {
                         trendingMovies={trendingMovies}
                         recommendedMovies={recommendedMovies}
                         queriedMovies={queriedMovies}
+                        movieData={movieData}
+                        page={page}
                     />
                 </div>
 

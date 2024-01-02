@@ -1,8 +1,24 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from './../components/Sidebar';
 import CardsList from './../components/CardsList';
+import { useOutletContext } from "react-router-dom";
 
 const Bookmarked = () => {
+    const [searchQuery, setSearchQuery] = useState('');
+    const [queriedMovies, setQueriedMovies] = useState([]);
+    const [movieData, setMovieData] = useOutletContext();
+    const [page, setPage] = useState({
+        home: false,
+        bookmarked: true,
+        movies: false,
+        tvSeries: false,
+    });
+
+    useEffect(() => {
+        const queriedMovieList = movieData.filter((movie) => movie.title.toLowerCase().includes(searchQuery));
+
+        setQueriedMovies(queriedMovieList);
+    }, [searchQuery]);
     
     return (
         <div className="flex bg-[#10141f]">
@@ -13,7 +29,7 @@ const Bookmarked = () => {
                         <img className="align-bottom h-8" src={'./assets/icon-search.svg'} alt="search-icon" />                
                         <input
                             type="text"
-                            placeholder="Search for movies or TV series"
+                            placeholder="Search for movies..."
                             onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}
                             className="border border-gray-300 p-2 rounded-l focus:outline-none bg-[#10141f] border-none 
                             w-64 pl-4 text-white"
@@ -21,9 +37,9 @@ const Bookmarked = () => {
                     </div>
                     <CardsList
                         searchQuery={searchQuery}
-                        trendingMovies={trendingMovies}
-                        recommendedMovies={recommendedMovies}
                         queriedMovies={queriedMovies}
+                        movieData={movieData}
+                        page={page}
                     />
                 </div>
 

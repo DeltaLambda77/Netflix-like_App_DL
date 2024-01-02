@@ -169,6 +169,49 @@ const CardsList = ({searchQuery, queriedMovies, movieData, page}) => {
             </div>
         )
     }
+    else if (page.bookmarked) {
+        return (
+            <div>
+                {searchQuery === '' ? (
+                    <div>
+                        <h2 className="text-2xl font-bold text-white">Your Bookmarked TV Shows and Movies</h2>
+                        <div className="flex flex-wrap pt-8">
+                            {bookmarkedMovies.map((movie) => (
+                                <RecommendedMovieCard 
+                                key={uuidv4()}
+                                title={movie.title}
+                                year={movie.year}
+                                category={movie.category}
+                                rating={movie.rating}
+                                thumbnail={movie.thumbnail.regular.small}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                ) : queriedMovies.length > 0 ? (
+                    <div className="min-h-screen min-w-screen bg-[#10141f]">
+                        <h2 className="text-2xl font-bold text-white">Matched movies were found</h2>
+                        <div className="flex flex-wrap pt-8">
+                            {queriedMovies.map((movie) => (
+                                <RecommendedMovieCard 
+                                key={uuidv4()}
+                                title={movie.title}
+                                year={movie.year}
+                                category={movie.category}
+                                rating={movie.rating}
+                                thumbnail={movie.thumbnail.regular.small}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                ) : (
+                    <div className="min-h-screen min-w-screen bg-[#10141f]">
+                        <h2 className="text-2xl font-bold text-white">No matches were found</h2>
+                    </div>
+                )}
+            </div>
+        )
+    }
 };
 
 export default CardsList;

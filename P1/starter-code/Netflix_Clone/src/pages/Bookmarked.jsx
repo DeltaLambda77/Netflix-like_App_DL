@@ -21,7 +21,7 @@ const Bookmarked = () => {
     }, [searchQuery]);
     
     return (
-        <div className="flex bg-[#10141f]">
+        <div className="min-h-screen flex bg-[#10141f]">
             <Sidebar />
             <div className="flex-1 ml-32">
                 <div>

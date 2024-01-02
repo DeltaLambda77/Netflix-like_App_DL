@@ -21,7 +21,7 @@ const Movies = () => {
     }, [searchQuery]);
     
     return (
-        <div className="flex bg-[#10141f]">
+        <div className="flex min-h-screen bg-[#10141f]">
             <Sidebar />
             <div className="flex-1 ml-32">
                 <div>

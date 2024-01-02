@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from './../components/Sidebar';
 import CardsList from './../components/CardsList';
-import movieDataFile from './../../data.json';
 import { useOutletContext } from "react-router-dom";
 
 const Movies = () => {
@@ -16,7 +15,7 @@ const Movies = () => {
     });
 
     useEffect(() => {
-        const queriedMovieList = movieDataFile.filter((movie) => movie.title.toLowerCase().includes(searchQuery));
+        const queriedMovieList = movieData.filter((movie) => movie.title.toLowerCase().includes(searchQuery));
 
         setQueriedMovies(queriedMovieList);
     }, [searchQuery]);

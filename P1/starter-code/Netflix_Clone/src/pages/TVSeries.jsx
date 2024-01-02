@@ -3,7 +3,7 @@ import Sidebar from './../components/Sidebar';
 import CardsList from './../components/CardsList';
 import { useOutletContext } from "react-router-dom";
 
-const Movies = () => {
+const TVSeries = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [queriedMovies, setQueriedMovies] = useState([]);
     const [movieData, setMovieData] = useOutletContext();
@@ -48,4 +48,4 @@ const Movies = () => {
     );
 };
 
-export default Movies;
+export default TVSeries;

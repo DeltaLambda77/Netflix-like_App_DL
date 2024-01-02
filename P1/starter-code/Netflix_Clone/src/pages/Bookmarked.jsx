@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from './../components/Sidebar';
 import CardsList from './../components/CardsList';
-import movieDataFile from './../../data.json';
 
 const Bookmarked = () => {
     

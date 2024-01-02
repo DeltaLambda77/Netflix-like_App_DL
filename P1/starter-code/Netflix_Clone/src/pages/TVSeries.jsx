@@ -11,7 +11,7 @@ const Movies = () => {
         home: false,
         bookmarked: false,
         movies: false,
-        tvSeries: tvSeries,
+        tvSeries: true,
     });
 
     useEffect(() => {

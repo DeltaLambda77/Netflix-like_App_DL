@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import Home from './pages/Home.jsx';
-import Movies from './pages/Movies.jsx'
-import Bookmarked from './pages/Bookmarked.jsx'
+import Movies from './pages/Movies.jsx';
+import Bookmarked from './pages/Bookmarked.jsx';
+import TVSeries from './pages/TVSeries.jsx'
 import ErrorPage from './ErrorPage.jsx';
 import {
   createBrowserRouter,
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/Movies",
         element: <Movies />,
+      },
+      {
+        path: "/TV_Series",
+        element: <TVSeries />,
       },
     ],
   },

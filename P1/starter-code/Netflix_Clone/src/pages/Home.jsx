@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from './../components/Sidebar';
 import CardsList from './../components/CardsList';
-import movieDataFile from './../../data.json';
 import { useOutletContext } from "react-router-dom";
 
 const Home = () => {
     const [searchQuery, setSearchQuery] = useState('');
-    const [trendingMovies, setTrendingMovies] = useState([]);
-    const [recommendedMovies, setRecommendedMovies] = useState([]);
     const [queriedMovies, setQueriedMovies] = useState([]);
     const [movieData, setMovieData] = useOutletContext();
     const [page, setPage] = useState({
@@ -18,18 +15,7 @@ const Home = () => {
     });
 
     useEffect(() => {
-        const trendingMovieList = movieDataFile.filter((movie) => movie.isTrending);
-        const recommendedMovieList = movieDataFile.filter((movie) => !movie.isTrending);
-
-        console.log(movieData);
-        console.log(page);
-
-        setTrendingMovies(trendingMovieList);
-        setRecommendedMovies(recommendedMovieList);
-    }, []);
-
-    useEffect(() => {
-        const queriedMovieList = movieDataFile.filter((movie) => movie.title.toLowerCase().includes(searchQuery));
+        const queriedMovieList = movieData.filter((movie) => movie.title.toLowerCase().includes(searchQuery));
 
         setQueriedMovies(queriedMovieList);
     }, [searchQuery]);
@@ -45,7 +31,7 @@ const Home = () => {
                             type="text"
                             placeholder="Search for movies or TV series"
                             onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}
-                            className="border border-gray-300 p-2 rounded-l focus:outline-none bg-[#10141f] border-none 
+                            className="border border-gray-300 p-2 rounded-l focus:outline-none bg-[#1a1a1b] border-none 
                             w-64 pl-4 text-white"
                         />
                     </div>

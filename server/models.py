@@ -21,3 +21,20 @@ class User(db.Model, SerializerMixin):
     
     viewingHistory = db.Column("ViewingHistory", back_populates="user") 
     watchlist = db.Column("Watchlist", back_populates="user")
+
+
+class Movie(db.Model, SerializerMixin):
+    __tablename__ = "movies"
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String)
+    year = db.Column(db.Integer)
+    category = db.Column(db.String)
+    rating = db.Column(db.String)
+    isBookmarked = db.Column(db.Boolean, default=False)
+    isTrending = db.Column(db.Boolean)
+    trendingImageSmall = db.Column(db.String)
+    trendingImageLarge = db.Column(db.String)
+    regularImageSmall = db.Column(db.String)
+    regularImageMedium = db.Column(db.String)
+    regularImageLarge = db.Column(db.String)

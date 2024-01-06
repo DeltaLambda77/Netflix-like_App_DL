@@ -5,6 +5,7 @@ from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.hybrid import hybrid_property
 from config import db, bcrypt
 from datetime import datetime
+import os
 
 class User(db.Model, SerializerMixin):
     __tablename__ = "users"
@@ -23,6 +24,49 @@ class User(db.Model, SerializerMixin):
     watchlist = db.relationship("Watchlist", back_populates="user")
 
     serialize_rules = ('-viewing_history.user', '-viewing_history.user_id', '-watchlist.user', '-watchlist.user_id')
+
+    @hybrid_property
+    def password_hash(self):
+        return self.password_hash
+
+    @password_hash.setter
+    def password_hash(self, password):
+        password_hash = bcrypt.generate_password_hash(
+            password.encode('utf-8')
+        )
+        self.password_hash, password.decode('utf-8')
+
+    def authenticate(self, password):
+        return bcrypt.check_password_hash(
+            self.password_hash, password.encode('utf-8')
+        )
+    
+    @validates('email')
+    def validate_email(self, key, email):
+        if len(email) < 1 or '@' not in email:
+            raise ValueError("You have not entered a valid email address. Please try again.")
+        
+        return email
+
+    
+    @validates('password_hash')
+    def validate_password(self, key, password_hash):
+        if not password_hash or len(password_hash) <= 6:
+            raise ValueError("You must enter a password with 6 or more characters.")
+        
+        return password_hash
+
+    @validates('profile_picture')
+    def validate_profile_picture(self, key, profile_picture):
+        allowed_extensions = {'.jpg', '.jpeg', '.png'}
+
+        file_extension = os.path.splitext(profile_picture.lower())[1]
+
+        if file_extension not in allowed_extensions:
+            raise ValueError("File type not recognized. Accepted file extensions: .jpg, .jpeg, .png")
+        
+        return profile_picture
+        
 
 
 class Movie(db.Model, SerializerMixin):
@@ -77,19 +121,4 @@ class ViewingHistory(db.Model, SerializerMixin):
 
     serialize_rules = ('-user.viewing_history', '-movie.viewing_history')
 
-@hybrid_property
-def password_hash(self):
-    return self._password_hash
-
-@password_hash.setter
-def password_hash(self, password):
-    password_hash = bcrypt.generate_password_hash(
-        password.encode('utf-8')
-    )
-    self._password_hash, password.decode('utf-8')
-
-def authenticate(self, password):
-    return bcrypt.check_password_hash(
-        self._password_hash, password.encode('utf-8')
-    )
 

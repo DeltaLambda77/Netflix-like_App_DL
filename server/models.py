@@ -19,8 +19,10 @@ class User(db.Model, SerializerMixin):
     email = db.Column(db.String)
     preferred_genre = db.Column(db.String)
     
-    viewing_history = db.Column("ViewingHistory", back_populates="user") 
-    watchlist = db.Column("Watchlist", back_populates="user")
+    viewing_history = db.relationship("ViewingHistory", back_populates="user") 
+    watchlist = db.relationship("Watchlist", back_populates="user")
+
+    serialize_rules = ('-viewing_history.user', '-viewing_history.user_id', '-watchlist.user', '-watchlist.user_id')
 
 
 class Movie(db.Model, SerializerMixin):
@@ -40,6 +42,12 @@ class Movie(db.Model, SerializerMixin):
     regular_image_large = db.Column(db.String)
     clicks = db.Column(db.Integer)
 
+    viewing_history = db.relationship("ViewingHistory", back_populates="movie") 
+    watchlist = db.relationship("Watchlist", back_populates="movie")
+
+    serialize_rules = ('-viewing_history.movie', '-viewing_history.movie_id', '-watchlist.movie', '-watchlist.movie_id')
+
+
 class Watchlist(db.Model, SerializerMixin):
     __tablename__ = "watchlists"
 
@@ -48,8 +56,10 @@ class Watchlist(db.Model, SerializerMixin):
     movie_id = db.Column(db.Integer, db.ForeignKey('movies.id'))
     added_at = db.Column(db.datetime, default=datetime.utcnow)
 
-    user = db.Column("User", back_populates="watchlist")
-    movie = db.Column("Movie", back_populates="watchlist")
+    user = db.relationship("User", back_populates="watchlist")
+    movie = db.relationship("Movie", back_populates="watchlist")
+
+    serialize_rules = ('-user.watchlist', '-movie.watchlist')
     
 class ViewingHistory(db.Model, SerializerMixin):
     __tablename__ = "viewing_history"
@@ -64,3 +74,5 @@ class ViewingHistory(db.Model, SerializerMixin):
 
     user = db.Column("User", back_populates="viewing_history")
     movie = db.Column("Movie", back_populates="viewing_history")
+
+    serialize_rules = ('-user.viewing_history', '-movie.viewing_history')

@@ -41,6 +41,7 @@ class User(db.Model, SerializerMixin):
             self.password_hash, password.encode('utf-8')
         )
     
+
     @validates('email')
     def validate_email(self, key, email):
         if len(email) < 1 or '@' not in email:
@@ -48,7 +49,6 @@ class User(db.Model, SerializerMixin):
         
         return email
 
-    
     @validates('password_hash')
     def validate_password(self, key, password_hash):
         if not password_hash or len(password_hash) <= 6:
@@ -77,6 +77,7 @@ class Movie(db.Model, SerializerMixin):
     year = db.Column(db.Integer)
     category = db.Column(db.String)
     rating = db.Column(db.String)
+    genre = db.Column(db.String)
     isBookmarked = db.Column(db.Boolean, default=False)
     isTrending = db.Column(db.Boolean)
     trending_image_small = db.Column(db.String)
@@ -90,6 +91,40 @@ class Movie(db.Model, SerializerMixin):
     watchlist = db.relationship("Watchlist", back_populates="movie")
 
     serialize_rules = ('-viewing_history.movie', '-viewing_history.movie_id', '-watchlist.movie', '-watchlist.movie_id')
+
+    @validates('rating')
+    def validate_rating(self, key, rating):
+        movie_ratings = {
+            'G', 'PG', 'PG-13', 'R', 'NC-17'
+        }
+
+        if rating not in movie_ratings:
+            raise ValueError("An unrecognized movie rating was entered. Please try again")
+        
+        return rating
+
+    @validates('genre')
+    def validate_genre(self, key, genre):
+        media_genres = {
+            'Horror', 'Action', 'Comedy', 'Science Fiction', 'Documentary', 'Short', 'Mystery', 'Fantasy', 'Musical',
+            'Animation', 'Romance', 'Anime' 
+            }
+        
+        if genre not in media_genres:
+            raise ValueError("An unrecognized movie genre was entered. Please try again")
+        
+        return genre
+    
+    @validates('trending_image_small', 'trending_image_large', 'regular_image_small', 'regular_image_medium', 'regular_image_large')
+    def validate_image_extension(self, key, image_value):
+        allowed_extensions = {'.jpg', '.jpeg', '.png'}
+
+        file_extension = os.path.splitext(image_value.lower())[1]
+
+        if file_extension not in allowed_extensions:
+            raise ValueError("File type not recognized. Accepted file extensions: .jpg, .jpeg, .png")
+        
+        return image_value
 
 
 class Watchlist(db.Model, SerializerMixin):

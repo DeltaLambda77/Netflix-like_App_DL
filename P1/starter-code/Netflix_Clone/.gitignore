@@ -39,3 +39,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# python backend stuff
+__pycache
+*.pyc
+migrations/

@@ -3,8 +3,7 @@ from sqlalchemy import MetaData
 from sqlalchemy.orm import validates
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.hybrid import hybrid_property
-from config import db, bcrypt
-from datetime import datetime
+from config import db, Bcrypt
 import os
 
 class User(db.Model, SerializerMixin):
@@ -15,7 +14,7 @@ class User(db.Model, SerializerMixin):
     password_hash = db.Column(db.String, nullable=False)
     first_name = db.Column(db.String)
     last_name = db.Column(db.String)
-    date_of_birth = db.Column(db.datetime)
+    date_of_birth = db.Column(db.String)
     profile_picture = db.Column(db.String)
     email = db.Column(db.String)
     preferred_genre = db.Column(db.String)
@@ -31,13 +30,13 @@ class User(db.Model, SerializerMixin):
 
     @password_hash.setter
     def password_hash(self, password):
-        password_hash = bcrypt.generate_password_hash(
+        password_hash = Bcrypt.generate_password_hash(
             password.encode('utf-8')
         )
         self.password_hash, password.decode('utf-8')
 
     def authenticate(self, password):
-        return bcrypt.check_password_hash(
+        return Bcrypt.check_password_hash(
             self.password_hash, password.encode('utf-8')
         )
     
@@ -132,7 +131,7 @@ class Watchlist(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     movie_id = db.Column(db.Integer, db.ForeignKey('movies.id'))
-    added_at = db.Column(db.datetime, default=datetime.utcnow)
+    added_at = db.Column(db.String)
 
     user = db.relationship("User", back_populates="watchlist")
     movie = db.relationship("Movie", back_populates="watchlist")

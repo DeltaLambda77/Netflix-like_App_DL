@@ -22,6 +22,7 @@ class Login(Resource):
     
 Api.add_resource(Login, '/login')
 
+
 class Logout(Resource):
     def post(self):
         session['user_id'] = None
@@ -29,6 +30,35 @@ class Logout(Resource):
     
 Api.add_resource(Logout, '/logout')
 
+
+class CheckSession(Resource):
+    def get(self):
+        client_user = User.query.filter(User.id == session.get('user_id')).first()
+
+        if not client_user:
+            return {'message': '401: Not Authorized'}, 401
+        
+        return client_user.to_dict()
+    
+class Users(Resource):
+    def get(self):
+        all_users = [user.to_dict() for user in User.query.all()]
+
+        response = make_response(all_users, 200)
+
+        return response
+
+Api.add_resource(Users, '/users')
+
+class Movies(Resource):
+    def get(self):
+        all_movies = [movie.to_dict() for movie in Movie.query.all()]
+
+        response = make_response(all_movies, 200)
+
+        return response
+
+Api.add_resource(Movies, '/movies')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

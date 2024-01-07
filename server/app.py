@@ -60,5 +60,26 @@ class Movies(Resource):
 
 Api.add_resource(Movies, '/movies')
 
+class Watchlists(Resource):
+    def get(self):
+        all_watchlists = [watchlist.to_dict() for watchlist in Watchlist.query.all()]
+
+        response = make_response(all_watchlists, 200)
+
+        return response
+
+Api.add_resource(Watchlists, '/watchlists')
+
+class ViewingHistories(Resource):
+    def get(self):
+        all_viewing_histories = [viewing_history.to_dict() for viewing_history in ViewingHistory.query.all()]
+
+        response = make_response(all_viewing_histories, 200)
+
+        return response
+
+Api.add_resource(ViewingHistories, '/viewing_histories')
+
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

@@ -50,6 +50,21 @@ class Users(Resource):
 
 Api.add_resource(Users, '/users')
 
+class UserByID(Resource):
+    def get(self, id):
+        user_by_ID = User.query.filter(User.id == id).first()
+
+        if not user_by_ID:
+            response = make_response({
+                "error": f"User by id of: {id} not found"
+            }, 404)
+
+        response = make_response(user_by_ID.to_dict(), 200)
+
+        return response
+
+Api.add_resource(UserByID, '/users/<int:id>')
+
 class Movies(Resource):
     def get(self):
         all_movies = [movie.to_dict() for movie in Movie.query.all()]
@@ -57,6 +72,8 @@ class Movies(Resource):
         response = make_response(all_movies, 200)
 
         return response
+
+
 
 Api.add_resource(Movies, '/movies')
 

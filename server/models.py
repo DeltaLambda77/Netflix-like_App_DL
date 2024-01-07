@@ -143,13 +143,13 @@ class ViewingHistory(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    movie_id = db.Column(db.Integer, db.ForeignKey('movie.id'))
+    movie_id = db.Column(db.Integer, db.ForeignKey('movies.id'))
     genre1_counter = db.Column(db.Integer)
     genre2_counter = db.Column(db.Integer)
     genre3_counter = db.Column(db.Integer)
 
-    user = db.Column("User", back_populates="viewing_history")
-    movie = db.Column("Movie", back_populates="viewing_history")
+    user = db.relationship("User", back_populates="viewinghistory")
+    movie = db.relationship("Movie", back_populates="viewinghistory")
 
     serialize_rules = ('-user.viewing_history', '-movie.viewing_history')
 

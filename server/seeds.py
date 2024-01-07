@@ -14,7 +14,7 @@ if __name__ == '__main__':
         print("Seeding User table")
         user1 = User (
             username = "funnymonkey556",
-            password_hash = "",
+            _password_hash = "si1lyB4nana79!",
             first_name = "John",
             last_name = "Smith",
             date_of_birth = "09-17-1987",
@@ -27,9 +27,6 @@ if __name__ == '__main__':
 
         db.session.commit()
 
-        user1_password = 'si1lyB4nana79!'
-        user1.password_hash = user1_password
-
         db.session.add(user1)
 
         print("Seeding Movie table")
@@ -38,7 +35,7 @@ if __name__ == '__main__':
             title = "Beyond Earth",
             year = 2019,
             category = "Movie",
-            rating = 10,
+            rating = "PG",
             genre = "Science Fiction",
             isTrending = True,
             trending_image_small = "trending_image_small.jpg",
